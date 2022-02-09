@@ -4,6 +4,7 @@ import random
 from time import *
 from random import *
 
+import PIL.ImageOps
 from PIL import ImageTk, Image
 from tkinter import *
 from tkinter import ttk
@@ -20,11 +21,10 @@ def init():
     os.chdir("MainGraphic")
     print(os.getcwd())
     root = Tk()
-    root.geometry("1000x1001")
+    root.geometry("1000x502")
     root.resizable(False, False)
-    frm = ttk.Frame(root, padding=0)
-    frm.grid()
     background = ImageTk.Image.open("WindowsILL background.jpg")
+    background = background.resize((1000, 500))
     background = ImageTk.PhotoImage(background)
     balk = ImageTk.Image.open("WindowsILL menubalk.png")
     windowknop = ImageTk.Image.open("WindowsILL windowsknop.png")
@@ -51,13 +51,19 @@ def Start():
     global boop
     backgroundlabel = ttk.Label(image=background)
     backgroundlabel.image = background
+    backgroundlabel.pack()
     backgroundlabel.place(x=0, y=0)
-    hello = ttk.Label(frm, text="Hello")
-    ScreenList.append(hello)
-    hello.grid(column=1, row=1)
-    boop = ttk.Button(frm, text="Hello!", command=Clearscreen)
+    boop = ttk.Button(root, text="Hello!", command=Clearscreen, width=50, height=50)
+    boop.pack()
+    boop.place(x=10, y=50)
+
+
+
+    root.lower()
+
+
     ScreenList.append(boop)
-    boop.grid(column=5, row=1)
+
 
 init()
 Start()
