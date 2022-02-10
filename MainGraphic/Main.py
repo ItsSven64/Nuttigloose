@@ -8,7 +8,7 @@ from PIL import ImageTk, Image
 from tkinter import *
 from tkinter import ttk
 
-import Annoyence as ay
+import Annoyance as ay
 
 
 def init():
