@@ -39,6 +39,8 @@ def start():
     btn1.pack()
     btn1.place(x=50, y=250)
 
-init()
-start()
-root.mainloop()
+
+if __name__ == '__main__':
+    init()
+    start()
+    root.mainloop()

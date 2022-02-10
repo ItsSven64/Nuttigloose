@@ -5,7 +5,6 @@ import tkinter as ttk
 from time import time, sleep
 import string
 
-root = ttk.Tk()
 
 def delay(total, dev):
     if not dev:

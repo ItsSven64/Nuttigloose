@@ -13,7 +13,6 @@ import Annoyance as ay
 
 def init():
     # Load assets
-    global ScreenList
     global frm
     global root
     global background
