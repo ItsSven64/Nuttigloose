@@ -31,9 +31,11 @@ def init():
     windowknop = ImageTk.PhotoImage(windowknop)
 
 
-def OpenTaakbeheer():
+def opentaakbeheer():
     exec(open("Taakbeheer.py").read())
 
+def opencalc():
+    exec(open("Calculator.py").read())
 
 def on_click(id):
     global button1
@@ -47,7 +49,7 @@ def Start():
     backgroundlabel.image = background
     backgroundlabel.pack()
     backgroundlabel.place(x=0, y=0)
-    boop = ttk.Button(root, text="Hello!", command=OpenTaakbeheer, width=50)
+    boop = ttk.Button(root, text="Hello!", command=opentaakbeheer(), width=50)
     boop.pack()
     boop.place(x=10, y=50)
     root.lower()
@@ -58,8 +60,6 @@ def Start():
 
 if __name__ == '__main__':
     init()
-    ay.delay(1)
+    ay.delay(1, False)
     Start()
-    if kb.is_pressed('b'):
-        print("You're in control!")
     root.mainloop()
