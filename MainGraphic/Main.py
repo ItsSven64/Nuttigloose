@@ -1,17 +1,18 @@
 import os
 
-import random
-from time import *
-from random import *
+
+import keyboard as kb
 
 import PIL.ImageOps
 from PIL import ImageTk, Image
 from tkinter import *
 from tkinter import ttk
 
+import Annoyence as ay
+
 
 def init():
-    #Load assets
+    # Load assets
     global ScreenList
     global frm
     global root
@@ -19,7 +20,6 @@ def init():
     global balk
     global windowknop
     os.chdir("MainGraphic")
-    print(os.getcwd())
     root = Tk()
     root.geometry("1000x502")
     root.resizable(False, False)
@@ -29,14 +29,10 @@ def init():
     balk = ImageTk.Image.open("WindowsILL menubalk.png")
     windowknop = ImageTk.Image.open("WindowsILL windowsknop.png")
     windowknop = ImageTk.PhotoImage(windowknop)
-    ScreenList = []
 
 
-
-
-def Clearscreen():
-    root.destroy()
-
+def OpenTaakbeheer():
+    exec(open("Taakbeheer.py").read())
 
 
 def on_click(id):
@@ -47,25 +43,23 @@ def on_click(id):
 
 
 def Start():
-    global hello
-    global boop
     backgroundlabel = ttk.Label(image=background)
     backgroundlabel.image = background
     backgroundlabel.pack()
     backgroundlabel.place(x=0, y=0)
-    boop = ttk.Button(root, text="Hello!", command=Clearscreen, width=50, height=50)
+    boop = ttk.Button(root, text="Hello!", command=OpenTaakbeheer, width=50)
     boop.pack()
     boop.place(x=10, y=50)
-
-
-
     root.lower()
 
 
-    ScreenList.append(boop)
 
 
-init()
-Start()
-print(ScreenList)
-root.mainloop()
+
+if __name__ == '__main__':
+    init()
+    ay.delay(1)
+    Start()
+    if kb.is_pressed('b'):
+        print("You're in control!")
+    root.mainloop()
