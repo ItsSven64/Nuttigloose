@@ -51,7 +51,7 @@ def button_pressed(tag):
     global Label_Text
     global lbl
     global rst
-    tuple = (Label_Text, tag)
+    tuple = (tag, Label_Text)
     Label_Text = ''.join(tuple)
     print(Label_Text)
     if rst:
@@ -67,8 +67,13 @@ def execute():
     global rstlbl
     global rst
     randomlist = [0, 1, 2, 3, 4, 5, 6]
-    result = eval(Label_Text)
-    result = (result - random.choice(randomlist))
+    try:
+        ay.delay(5, False)
+        result = eval(Label_Text)
+        result = (result - random.choice(randomlist))
+    except SyntaxError:
+        ay.delay(10, False)
+        result = "Error"
     Label_Text = "                   "
     lbl = ttk.Label(text=Label_Text)
     lbl.place(x=10, y=5)
