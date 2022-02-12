@@ -9,7 +9,8 @@ from PIL import ImageTk, Image
 from tkinter import *
 from tkinter import ttk
 
-import Main
+import Annoyance as ay
+
 
 def init():
      # Load assets
@@ -35,7 +36,7 @@ def start():
     bckgrnd = ttk.Label(image= background)
     bckgrnd.pack()
     bckgrnd.place(x=0, y=0)
-    btn1 = ttk.Button(text='Click to get current programs!', command=letsmove, width=30)
+    btn1 = ttk.Button(text='Click to get current programs!', command=ay.letsmove, width=30)
     btn1.pack()
     btn1.place(x=50, y=250)
 

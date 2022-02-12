@@ -1,5 +1,6 @@
 import os
-
+import subprocess
+import sys
 
 import keyboard as kb
 
@@ -9,6 +10,7 @@ from tkinter import *
 from tkinter import ttk
 
 import Annoyance as ay
+import Calculator
 
 
 def init():
@@ -34,7 +36,7 @@ def opentaakbeheer():
     exec(open("Taakbeheer.py").read())
 
 def opencalc():
-    exec(open("Calculator.py").read())
+    subprocess.run([sys.executable, 'Calculator.py'], check=True)
 
 def on_click(id):
     global button1
@@ -48,7 +50,7 @@ def Start():
     backgroundlabel.image = background
     backgroundlabel.pack()
     backgroundlabel.place(x=0, y=0)
-    boop = ttk.Button(root, text="Hello!", command=opentaakbeheer(), width=50)
+    boop = ttk.Button(root, text="Calculator", command=opencalc, width=50)
     boop.pack()
     boop.place(x=10, y=50)
     root.lower()
