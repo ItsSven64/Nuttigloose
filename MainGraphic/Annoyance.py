@@ -1,6 +1,7 @@
 import os
 
 import requests
+from plyer import notification
 
 import random
 import tkinter as ttk
@@ -38,6 +39,16 @@ def webrape(total, dev=False):
                 x = x + 1
                 print(x)
         os.system("netsh interface set interface 'Wifi' disabled")
+        
+def ping(Title, Message, n, dev=False):
+    if not dev:
+        for x in range(n):
+            notification.notify(
+                title=Title,
+                message=Message,
+                app_icon=None,
+                timeout=10,
+                )
 
 if __name__ == '__main__':
-    webrape(5)
+    ping("HEY", ':D', 10)

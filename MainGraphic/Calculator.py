@@ -53,12 +53,6 @@ def button_pressed(tag):
     global rst
     tuple = (tag, Label_Text)
     Label_Text = ''.join(tuple)
-    print(Label_Text)
-    if rst:
-        rstlbl.destroy()
-        Label_Text = ""
-        rst = False
-
     lbl = ttk.Label(text=Label_Text)
     lbl.place(x=10, y=5)
 
@@ -78,9 +72,7 @@ def execute():
     lbl = ttk.Label(text=Label_Text)
     lbl.place(x=10, y=5)
     Label_Text = ''
-    rstlbl = ttk.Label(text=result)
-    rstlbl.place(x=10, y=5)
-    rst = True
+    ay.ping("Results are in!", str(result), 5)
 
 def clear():
     global Label_Text

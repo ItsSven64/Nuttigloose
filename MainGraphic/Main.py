@@ -6,8 +6,7 @@ import keyboard as kb
 
 import PIL.ImageOps
 from PIL import ImageTk, Image
-from tkinter import *
-from tkinter import ttk
+import tkinter as ttk
 
 import Annoyance as ay
 import Calculator
@@ -21,7 +20,7 @@ def init():
     global balk
     global windowknop
     os.chdir("MainGraphic")
-    root = Tk()
+    root = ttk.Tk()
     root.geometry("1000x502")
     root.resizable(False, False)
     background = ImageTk.Image.open("WindowsILL background.jpg")
@@ -32,11 +31,8 @@ def init():
     windowknop = ImageTk.PhotoImage(windowknop)
 
 
-def opentaakbeheer():
-    exec(open("Taakbeheer.py").read())
-
-def opencalc():
-    subprocess.run([sys.executable, 'Calculator.py'], check=True)
+def open(file):
+    subprocess.run([sys.executable, file], check=True)
 
 def on_click(id):
     global button1
@@ -48,11 +44,11 @@ def on_click(id):
 def Start():
     backgroundlabel = ttk.Label(image=background)
     backgroundlabel.image = background
-    backgroundlabel.pack()
     backgroundlabel.place(x=0, y=0)
-    boop = ttk.Button(root, text="Calculator", command=opencalc, width=50)
-    boop.pack()
-    boop.place(x=10, y=50)
+    task = ttk.Button(root, text="Task", command=lambda m='Taakbeheer.py': open(m), height=3, width=6)
+    task.place(x=20, y=20)
+    calc = ttk.Button(root, text="Calc", command=lambda m='Calculator.py': open(m), height=3, width=6)
+    calc.place(x=22, y=100)
     root.lower()
 
 
@@ -61,6 +57,5 @@ def Start():
 
 if __name__ == '__main__':
     init()
-    ay.delay(1, False)
     Start()
     root.mainloop()
