@@ -11,7 +11,6 @@ import tkinter as ttk
 import Annoyance as ay
 import Calculator
 
-
 def init():
     # Load assets
     global frm
@@ -30,7 +29,6 @@ def init():
     windowknop = ImageTk.Image.open("WindowsILL windowsknop.png")
     windowknop = ImageTk.PhotoImage(windowknop)
 
-
 def open(file):
     subprocess.run([sys.executable, file], check=True)
 
@@ -39,7 +37,6 @@ def on_click(id):
     match id:
         case 1:
             button1 = True
-
 
 def Start():
     backgroundlabel = ttk.Label(image=background)
@@ -50,10 +47,6 @@ def Start():
     calc = ttk.Button(root, text="Calc", command=lambda m='Calculator.py': open(m), height=3, width=6)
     calc.place(x=22, y=100)
     root.lower()
-
-
-
-
 
 if __name__ == '__main__':
     init()

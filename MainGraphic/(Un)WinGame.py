@@ -19,7 +19,6 @@ def init():
     root.geometry("1000x250")
     root.resizable(False, False)
     targetimg = tk.PhotoImage(file="target(100x100).png")
-    target = tk.Button(root, image=targetimg, command=move)
     target.place(x=1, y=5)
     clickedtime = time.time()
     responsetime = 100
