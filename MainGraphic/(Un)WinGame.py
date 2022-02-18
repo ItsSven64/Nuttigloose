@@ -18,7 +18,7 @@ def init():
     root = tk.Tk()
     root.geometry("1000x250")
     root.resizable(False, False)
-    targetimg = tk.PhotoImage(file="target(100x100).png")
+    targetimg = tk.PhotoImage(file="../Images/target(100x100).png")
     target.place(x=1, y=5)
     clickedtime = time.time()
     responsetime = 100

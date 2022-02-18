@@ -23,11 +23,11 @@ def init():
     root = Tk()
     root.geometry("500x502")
     root.resizable(False, False)
-    background = ImageTk.Image.open("WindowsILL background.jpg")
+    background = ImageTk.Image.open("../Images/WindowsILL background.jpg")
     background = background.resize((500, 500))
     background = ImageTk.PhotoImage(background)
-    balk = ImageTk.Image.open("WindowsILL menubalk.png")
-    windowknop = ImageTk.Image.open("WindowsILL windowsknop.png")
+    balk = ImageTk.Image.open("../Images/WindowsILL menubalk.png")
+    windowknop = ImageTk.Image.open("../Images/WindowsILL windowsknop.png")
     windowknop = ImageTk.PhotoImage(windowknop)
 
 
