@@ -1,6 +1,7 @@
 import os
 import tkinter as tk
 import random
+from PIL import ImageTk
 
 import time
 
@@ -12,14 +13,17 @@ def init():
     global timer
     global responsetime
     global recordtime
+    global targetimg
     os.chdir(os.path.join((os.getcwd()), 'MainGraphic'))
     print(os.getcwd())
     counter = 0
     root = tk.Tk()
     root.geometry("1000x250")
     root.resizable(False, False)
-    targetimg = tk.PhotoImage(file="../Images/target(100x100).png")
-    target.place(x=1, y=5)
+    targetimg = ImageTk.Image.open("../Images/target(100x100).png")
+    targetimg = ImageTk.PhotoImage(targetimg)
+    target = tk.Button(root, image=targetimg, command=move)
+    target.place(x=0, y=0)
     clickedtime = time.time()
     responsetime = 100
     recordtime = 999
@@ -54,6 +58,6 @@ def move():
     timer.place(x=510, y=0)
 
 
-if __name__ == '__main__':
-    init()
-    root.mainloop()
+
+init()
+root.mainloop()
