@@ -8,7 +8,7 @@ import Annoyance as ay
 
 
 
-def init():
+def calcinit():
     global root
     global Label_Text
     global rst
@@ -83,5 +83,5 @@ def clear():
 
 
 if __name__ == '__main__':
-    init()
+    calcinit()
     root.mainloop()
