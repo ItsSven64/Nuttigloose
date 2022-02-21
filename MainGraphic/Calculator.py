@@ -1,10 +1,7 @@
-import os
-
 import tkinter as ttk
 import random
 
-import Main as mn
-import Annoyance as ay
+import MainGraphic.Annoyance as ay
 
 
 

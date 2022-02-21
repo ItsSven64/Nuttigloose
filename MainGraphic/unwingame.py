@@ -4,7 +4,7 @@ import random
 from PIL import ImageTk
 
 import time
-import Annoyance as ay
+import MainGraphic.Annoyance as ay
 
 def gameinit():
     global counter
