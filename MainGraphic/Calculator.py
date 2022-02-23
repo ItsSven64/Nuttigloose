@@ -37,13 +37,6 @@ def calcinit():
     ttk.Button(root, text="=", command=execute, height=2, width=5).place(x=205, y=5)
     ttk.Button(root, text="C", command=clear, height=2, width=5).place(x=155, y=5)
 
-
-
-
-
-
-
-
 def button_pressed(tag):
     global Label_Text
     global lbl
