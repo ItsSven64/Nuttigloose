@@ -50,7 +50,20 @@ def ping(Title, Message, n, dev=False):
                 timeout=10,
                 )
 
-
+def flash(photo1, photo_object, photo2, Seconds, time):
+    xCord = photo_object.place_info()
+    yCord = photo_object.place_info()
+    photo1.place(x=xCord, y=yCord)
+    check = True
+    counter = 0
+    while check:
+        photo2.place(x=xCord, y=yCord)
+        time.sleep(time)
+        photo1.place(x=xCord, y=yCord)
+        time.sleep(time)
+        counter = counter + time*2
+        if counter == Seconds:
+            check = False
 
 
 if __name__ == '__main__':

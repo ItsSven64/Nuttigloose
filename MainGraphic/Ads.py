@@ -1,19 +1,31 @@
+import os
+
 import tkinter as tk
 import random
+from PIL import ImageTk
 
 def openad():
     global root
-    sizexlist = list(range(200,500))
-    sizeylist = list(range(400, 1000))
-    sizechoice = (str(random.choice(sizeylist))+"x"+str(random.choice(sizexlist)))
-    namelist = ["BUY NOW!", "GET IT TODAY", "2 viruses detected, take action!", "Hot MILFS in your area!"]
-    namechoice = random.choice(list(range(len(namelist))))
+    global MILFAD
+    sizeychoice = 300
+    sizexchoice = 250
+    sizechoice = (str(sizeychoice)+"x"+str(sizexchoice))
+    namelist = ["Hotel Reduction!", "GET IT TODAY", "2 viruses detected, take action!", "Hot MILFS in your area!"]
+    namechoice = random.choice(list(range(0, (len(namelist)))))
     root = tk.Tk()
     root.geometry(sizechoice)
     root.resizable(False, False)
     root.title(namelist[namechoice])
+    os.chdir("..\Images")
+    match namechoice:
+        case 0:
+            HOTELAD = ImageTk.PhotoImage(ImageTk.Image.open("RojalParck.png").resize((sizeychoice, sizexchoice)))
+            tk.Label(image=HOTELAD).place(x=0, y=0)
+        case 3:
+            MILFAD = ImageTk.PhotoImage(ImageTk.Image.open("MILF-AD.png").resize((sizeychoice, sizexchoice)))
+            tk.Label(image=MILFAD).place(x=0, y=0)
+    root.mainloop()
 
 
 if __name__ == '__main__':
     openad()
-    root.mainloop()

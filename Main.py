@@ -5,12 +5,15 @@ import sys
 import keyboard as kb
 import PIL.ImageOps
 from PIL import ImageTk, Image
-import tkinter as ttk
+import tkinter as tk
+import tkinter.ttk as ttk
 import random
 
+import MainGraphic.Ads as ad
 import MainGraphic.Annoyance as ay
-import MainGraphic.Calculator
+import MainGraphic.Calculator as calc
 import MainGraphic.unwingame as uwg
+import MainGraphic.Taakbeheer as task
 
 def maininit():
     # Load assets
@@ -24,63 +27,80 @@ def maininit():
     global taskknop
     global pressed_task
     global calcknop
+    global pressed_calc
     global lastkey
+    global opened_list
+    global dev
+    dev = False
     os.chdir("Images")
-    root = ttk.Tk()
+    root = tk.Tk()
     root.geometry("1000x502")
     root.resizable(False, False)
     root.title("WindowsIll 1.0")
+    opened_list = []
+    s = ttk.Style()
+    s.theme_use('vista')
     root.bind('<KeyRelease>', keypress_handler)
     background = ImageTk.Image.open("WindowsILL background.jpg")
     background = background.resize((1000, 500))
     background = ImageTk.PhotoImage(background)
-    balk = ImageTk.Image.open("WindowsILL menubalk.png")
+    balk = ImageTk.PhotoImage(ImageTk.Image.open("WindowsILL menubalk.png").resize((1000, 50)))
     windowknop = ImageTk.PhotoImage(ImageTk.Image.open("WindowsILL windowsknop.png").resize((75, 75)))
     taskknop = ImageTk.PhotoImage(ImageTk.Image.open("Taakbeheer pictogram.jpg").resize((100, 99)))
     calcknop = ImageTk.PhotoImage(ImageTk.Image.open("Rekenmachine pictogram .png").resize((100, 100)))
-    pressed_task = ImageTk.PhotoImage(ImageTk.Image.open("Taakbeheer pictogram geopend.jpg").resize((99,100)))
+    pressed_calc = ImageTk.PhotoImage(ImageTk.Image.open('Rekenmachine pictogram geopend.png').resize((40, 40)))
+    pressed_task = ImageTk.PhotoImage(ImageTk.Image.open("Taakbeheer pictogram geopend.jpg").resize((40,40)))
     gameknop = ImageTk.PhotoImage(ImageTk.Image.open("Game pictogram .png").resize((99, 100)))
-    pressed_game = ImageTk.PhotoImage(ImageTk.Image.open("Game pictogram geopend.png").resize((100, 98)))
+    pressed_game = ImageTk.PhotoImage(ImageTk.Image.open("Game pictogram geopend.png").resize((40, 40)))
+
+def add_onderbalk(file):
+    global opened_list
+    tot_items = len(opened_list)
+    match file:
+        case "Calculator.py":
+            menu = ttk.Button(root, image=pressed_calc)
+        case "Taakbeheer.py":
+            menu = ttk.Button(root, image=pressed_task)
+        case "unwingame.py":
+            menu = ttk.Button(root, image=pressed_game)
+    menu.place(x=48, y=(tot_items * 50))
+    root.mainloop(1)
 
 def open(file):
-    """match file:
-        case "unwingame.py":
-            game = ttk.Button(root, image=pressed_game)
-            game.place(x=21, y=180)
-        case "Taakbeheer.py":
-            task = ttk.Button(root, image=pressed_task)
-            task.place(x=20, y=20)"""
+    global opened_list
+    opened_list.append(file)
+    print(opened_list)
+    add_onderbalk(file)
     ay.delay(2, dev)
     os.chdir("../MainGraphic")
-    subprocess.run([sys.executable, file], check=True, shell=True)
+    subprocess.run([sys.executable, file], check=True)
+    print("Closed")
 
 def Start():
-    backgroundlabel = ttk.Label(image=background)
+    backgroundlabel = tk.Label(image=background)
     backgroundlabel.image = background
     backgroundlabel.place(x=0, y=0)
     task = ttk.Button(root, image=taskknop, command=lambda m='Taakbeheer.py': open(m))
     task.place(x=20, y=20)
-    calc = ttk.Button(root, image=calcknop, command=lambda m='Calculator.py': open(m))
+    calc = tk.Button(root, image=calcknop, command=lambda m='Calculator.py': open(m))
     calc.place(x=22, y=150)
-    game = ttk.Button(root, image=gameknop, command=lambda m='unwingame.py': open(m))
+    game = tk.Button(root, image=gameknop, command=lambda m='unwingame.py': open(m))
     game.place(x=21, y=280)
+    onderbalk = tk.Label(root, image=balk)
+    onderbalk.place(x=0, y=450)
 
 def keypress_handler(event):
     global dev
     match event.keysym:
         case "m":
             dev = True
-            boop = ttk.Message(root, text="DEVMODE", width=100)
+            boop = tk.Message(root, text="DEVMODE", width=100)
             boop.place(x=0, y=0)
             ay.delay(2)
 
 
 
 def all():
-    choice = random.choice(list(range(1,10)))
-    print(choice)
-    for x in range(choice):
-        ttk.Tk()
     maininit()
     Start()
     root.mainloop()

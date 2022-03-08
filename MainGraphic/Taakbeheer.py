@@ -9,26 +9,27 @@ from PIL import ImageTk, Image
 from tkinter import *
 from tkinter import ttk
 
-import Annoyance as ay
+import MainGraphic.Annoyance as ay
 
 
 def init():
      # Load assets
     global ScreenList
     global frm
-    global root
+    global taskroot
     global background
     global balk
     global windowknop
-    root = Tk()
-    root.geometry("500x502")
-    root.resizable(False, False)
+    taskroot = Tk()
+    taskroot.geometry("500x502")
+    taskroot.resizable(False, False)
     background = ImageTk.Image.open("../Images/WindowsILL background.jpg")
     background = background.resize((500, 500))
     background = ImageTk.PhotoImage(background)
     balk = ImageTk.Image.open("../Images/WindowsILL menubalk.png")
     windowknop = ImageTk.Image.open("../Images/WindowsILL windowsknop.png")
     windowknop = ImageTk.PhotoImage(windowknop)
+
 
 
 
@@ -40,8 +41,11 @@ def start():
     btn1.pack()
     btn1.place(x=50, y=250)
 
+def TaskMain():
+    init()
+    start()
+    taskroot.mainloop()
 
 if __name__ == '__main__':
     init()
     start()
-    root.mainloop()
