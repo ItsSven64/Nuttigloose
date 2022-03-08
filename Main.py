@@ -58,12 +58,12 @@ def add_onderbalk(file):
     tot_items = len(opened_list)
     match file:
         case "Calculator.py":
-            menu = ttk.Button(root, image=pressed_calc)
+            menu = ttk.Label(root, image=pressed_calc)
         case "Taakbeheer.py":
-            menu = ttk.Button(root, image=pressed_task)
+            menu = ttk.Label(root, image=pressed_task)
         case "unwingame.py":
-            menu = ttk.Button(root, image=pressed_game)
-    menu.place(x=48, y=(tot_items * 50))
+            menu = ttk.Label(root, image=pressed_game)
+    menu.place(x=(tot_items * 50), y=455)
     root.mainloop(1)
 
 def open(file):
