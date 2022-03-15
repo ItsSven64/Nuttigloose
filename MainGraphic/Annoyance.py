@@ -8,6 +8,7 @@ import tkinter as ttk
 from time import time, sleep
 import string
 
+"""Dit kan je overal gebruiken door <import MainGraphic.Annoyance> te doen"""
 
 def delay(total, dev=False):
     if not dev:
@@ -23,7 +24,6 @@ def letsmove(root, dev=False):
         choice2 = random.choice(list)
         argument = ("+"+str(choice1)+"+"+str(choice2))
         root.geometry(argument)
-
 
 def webrape(total, dev=False):
     url = "https://www.smithfieldfoods.com"

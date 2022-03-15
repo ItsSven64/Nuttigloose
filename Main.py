@@ -2,12 +2,10 @@ import os
 import subprocess
 import sys
 
-import keyboard as kb
-import PIL.ImageOps
 from PIL import ImageTk, Image
 import tkinter as tk
 import tkinter.ttk as ttk
-import random
+import mouse
 
 import MainGraphic.Ads as ad
 import MainGraphic.Annoyance as ay
@@ -31,6 +29,8 @@ def maininit():
     global lastkey
     global opened_list
     global dev
+    global sticky
+    sticky = False
     dev = False
     os.chdir("Images")
     root = tk.Tk()
@@ -86,6 +86,8 @@ def Start():
     calc.place(x=22, y=150)
     game = tk.Button(root, image=gameknop, command=lambda m='unwingame.py': open(m))
     game.place(x=21, y=280)
+    glue = tk.Button(root, image=gameknop, command=stay_here)
+    glue.place(x=150, y=20)
     onderbalk = tk.Label(root, image=balk)
     onderbalk.place(x=0, y=450)
 
@@ -98,12 +100,23 @@ def keypress_handler(event):
             boop.place(x=0, y=0)
             ay.delay(2)
 
-
+def stay_here():
+    global pos
+    global sticky
+    pos = mouse.get_position()
+    sticky = True
+    print("CLICK")
+    print(pos)
 
 def all():
     maininit()
     Start()
-    root.mainloop()
+    while True:
+        if sticky:
+            mouse.move(x=pos[0], y=pos[1], absolute=True)
+            print("MOVE")
+        root.update()
+
 
 if __name__ == '__main__':
     all()
