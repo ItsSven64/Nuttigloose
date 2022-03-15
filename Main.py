@@ -1,12 +1,14 @@
 import os
 import subprocess
 import sys
-
+import datetime as dt
+import keyboard as kb
+import PIL.ImageOps
 from PIL import ImageTk, Image
 import tkinter as tk
 import tkinter.ttk as ttk
+import random
 import mouse
-
 
 import MainGraphic.Annoyance as ay
 import MainGraphic.Calculator as calc
@@ -58,12 +60,12 @@ def add_onderbalk(file):
     tot_items = len(opened_list)
     match file:
         case "Calculator.py":
-            menu = ttk.Label(root, image=pressed_calc)
+            menu = ttk.Button(root, image=pressed_calc)
         case "Taakbeheer.py":
-            menu = ttk.Label(root, image=pressed_task)
+            menu = ttk.Button(root, image=pressed_task)
         case "unwingame.py":
-            menu = ttk.Label(root, image=pressed_game)
-    menu.place(x=(tot_items * 50), y=455)
+            menu = ttk.Button(root, image=pressed_game)
+    menu.place(x=48, y=(tot_items * 50))
     root.mainloop(1)
 
 def open(file):
@@ -90,6 +92,15 @@ def Start():
     glue.place(x=150, y=20)
     onderbalk = tk.Label(root, image=balk)
     onderbalk.place(x=0, y=450)
+    today = dt.datetime.now()
+    randomjaar = random.randint(0, today.year)
+    date = today.year-randomjaar, 12- today.month, 30- today.day
+    time = 24-today.hour, ":", 60-today.minute
+    label = tk.Label(root, text=date, fg="black")
+    label1 = tk.Label(root, text=time, fg="black")
+    label.place(relx=0.997, rely=0.969, anchor='se')
+    label1.place(relx=0.98, rely=0.93, anchor='se')
+
 
 def keypress_handler(event):
     global dev
