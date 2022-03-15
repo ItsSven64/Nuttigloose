@@ -1,7 +1,7 @@
 import os
 import subprocess
 import sys
-
+import datetime as dt
 import keyboard as kb
 import PIL.ImageOps
 from PIL import ImageTk, Image
@@ -9,7 +9,6 @@ import tkinter as tk
 import tkinter.ttk as ttk
 import random
 
-import MainGraphic.Ads as ad
 import MainGraphic.Annoyance as ay
 import MainGraphic.Calculator as calc
 import MainGraphic.unwingame as uwg
@@ -88,6 +87,15 @@ def Start():
     game.place(x=21, y=280)
     onderbalk = tk.Label(root, image=balk)
     onderbalk.place(x=0, y=450)
+    today = dt.datetime.now()
+    randomjaar = random.randint(0, today.year)
+    date = today.year-randomjaar, 12- today.month, 30- today.day
+    time = 24-today.hour, ":", 60-today.minute
+    label = tk.Label(root, text=date, fg="black")
+    label1 = tk.Label(root, text=time, fg="black")
+    label.place(relx=0.997, rely=0.969, anchor='se')
+    label1.place(relx=0.98, rely=0.93, anchor='se')
+
 
 def keypress_handler(event):
     global dev
