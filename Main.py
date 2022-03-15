@@ -1,7 +1,7 @@
 import os
 import subprocess
 import sys
-
+import datetime as dt
 import keyboard as kb
 import PIL.ImageOps
 from PIL import ImageTk, Image
@@ -66,6 +66,7 @@ def add_onderbalk(file):
     menu.place(x=48, y=(tot_items * 50))
     root.mainloop(1)
 
+
 def open(file):
     global opened_list
     opened_list.append(file)
@@ -88,6 +89,14 @@ def Start():
     game.place(x=21, y=280)
     onderbalk = tk.Label(root, image=balk)
     onderbalk.place(x=0, y=450)
+    today = dt.datetime.now()
+    randomyear = random.randint(0,today.year)
+    date = today.year- randomyear,12-today.month, 30-today.day
+    time = 24-today.hour, ":", 60-today.minute
+    label = tk.Label(root, text=date, fg="black")
+    label1 = tk.Label(root, text=time, fg="black", bg = 'white')
+    label.place(relx=1.0, rely=0.969, anchor='se')
+    label1.place(relx=0.98, rely=0.928, anchor='se')
 
 def keypress_handler(event):
     global dev
