@@ -7,7 +7,7 @@ import tkinter as tk
 import tkinter.ttk as ttk
 import mouse
 
-import MainGraphic.Ads as ad
+
 import MainGraphic.Annoyance as ay
 import MainGraphic.Calculator as calc
 import MainGraphic.unwingame as uwg

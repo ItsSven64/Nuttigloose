@@ -1,7 +1,7 @@
 import tkinter as tk
 from PIL import ImageTk
 
-def init():
+def Letterinit():
     # Load assets
     global ScreenList
     global frm
@@ -14,7 +14,6 @@ def init():
     global string
     global clear
     global symbol
-    symbol = ''
     string = ""
     clear = False
     symbollist = ["Type Here!"]
@@ -25,28 +24,33 @@ def init():
     background = ImageTk.Image.open("../Images/WindowsILL background.jpg")
     background = background.resize((500, 500))
     background = ImageTk.PhotoImage(background)
+    display = tk.Label(wordroot, text=symbollist)
+    display.place(x=0, y=10)
 
 def key_press(event):
     global clear
     global symbollist
+    global thing
     symbol = event.keysym
     match symbol:
         case 'BackSpace':
             symbol = ''
             symbollist.pop()
         case 'space':
-            symbol = ' '
+            symbol = '_'
         case 'Return':
-            clear = True
+            symbol = '\n'
         case 'period':
             symbol = '.'
-
-    symbollist = symbollist.append(symbol)
-    string = str(symbollist)
+        case 'comma':
+            symbol = ','
+    if len(symbol)>2:
+        symbol = "ERROR"
+    symbollist.append(symbol)
+    print(symbol)
     display = tk.Label(wordroot, text=symbollist)
     display.place(x=0, y=10)
-    print(string)
-    print("Been here")
+
 if __name__ == '__main__':
-    init()
+    Letterinit()
     wordroot.mainloop()
