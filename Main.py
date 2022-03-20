@@ -88,6 +88,8 @@ def Start():
     calc.place(x=22, y=150)
     game = tk.Button(root, image=gameknop, command=lambda m='unwingame.py': open(m))
     game.place(x=21, y=280)
+    box = tk.Button(root, command=lambda m='uselessbox.py':open(m))
+    box.place(x=150,y=150)
     glue = tk.Button(root, image=gameknop, command=stay_here)
     glue.place(x=150, y=20)
     onderbalk = tk.Label(root, image=balk)
