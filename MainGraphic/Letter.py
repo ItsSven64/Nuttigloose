@@ -1,6 +1,8 @@
 import tkinter as tk
 from PIL import ImageTk
 
+import MainGraphic.Annoyance as ay
+
 def Letterinit():
     # Load assets
     global ScreenList
@@ -16,7 +18,7 @@ def Letterinit():
     global symbol
     string = ""
     clear = False
-    symbollist = ["Type Here!"]
+    symbollist = []
     wordroot = tk.Tk()
     wordroot.geometry("1250x700")
     wordroot.resizable(True, True)
@@ -32,6 +34,7 @@ def key_press(event):
     global symbollist
     global thing
     symbol = event.keysym
+    ay.delay(0.2)
     match symbol:
         case 'BackSpace':
             symbol = ''
@@ -40,13 +43,14 @@ def key_press(event):
             symbol = '_'
         case 'Return':
             symbol = '\n'
+            ay.ping("NEXT ROW", symbollist, 2)
         case 'period':
             symbol = '.'
         case 'comma':
             symbol = ','
     if len(symbol)>2:
         symbol = "ERROR"
-    symbollist.append(symbol)
+    symbollist.insert(0, symbol)
     print(symbol)
     display = tk.Label(wordroot, text=symbollist)
     display.place(x=0, y=10)

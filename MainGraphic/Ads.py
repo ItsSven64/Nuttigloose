@@ -10,7 +10,6 @@ from importlib import *
 # in the earlier steps.
 
 # Initialize the Ad Manager client.
-ad_manager_client = ad_manager.AdManagerClient(oauth2_client, "WindowsIll")
 
 def openad():
     global root
