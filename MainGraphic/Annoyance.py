@@ -4,7 +4,8 @@ import requests
 from plyer import notification
 
 import random
-import tkinter as ttk
+import tkinter as tk
+from PIL import ImageTk
 from time import time, sleep
 import string
 
@@ -52,35 +53,28 @@ def ping(Title, Message, n, dev=False):
                 timeout=10,
             )
 
-def flash(photo1, photo_object, photo2, Seconds, time):
-    xCord = photo_object.place_info()
-    yCord = photo_object.place_info()
-    photo1.place(x=xCord, y=yCord)
+def flash(Seconds, pause):
+    os.chdir("..\Images")
+    adroot = tk.Tk()
+    photoone = ImageTk.PhotoImage(ImageTk.Image.open("RojalParck.png").resize((200, 200)))
+    phototwo = ImageTk.PhotoImage(ImageTk.Image.open("Onbetrouwbare ad hotelkamer Project Informatica 2.png").resize((200, 200)))
+    ad1 = tk.Label(adroot, image=photoone)
+    ad2 = tk.Label(adroot, image=phototwo)
+    ad1.place(x=0, y=0)
     check = True
-    counter = 0
+    ping("AANBIEDING!", "Bel 06-51108566 om een geweldige aanbieding te krijgen!", 1)
     while check:
-        photo2.place(x=xCord, y=yCord)
-        time.sleep(time)
-        photo1.place(x=xCord, y=yCord)
-        time.sleep(time)
-        counter = counter + time*2
-        if counter == Seconds:
-            check = False
-
-def flash(photo1, photo_object, photo2, Seconds, time):
-    xCord = photo_object.place_info()
-    yCord = photo_object.place_info()
-    photo1.place(x=xCord, y=yCord)
-    check = True
-    counter = 0
-    while check:
-        photo2.place(x=xCord, y=yCord)
-        time.sleep(time)
-        photo1.place(x=xCord, y=yCord)
-        time.sleep(time)
-        counter = counter + time * 2
-        if counter == Seconds:
-            check = False
+        try:
+            ad1.pack_forget()
+            ad2.pack()
+            adroot.update()
+            sleep(pause)
+            ad2.pack_forget()
+            ad1.pack()
+            adroot.update()
+            sleep(pause)
+        except:
+            return
 
 if __name__ == '__main__':
-    ping("HEY", ':D', 10)
+    flash(4, 0.1)

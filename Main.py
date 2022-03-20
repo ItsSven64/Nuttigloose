@@ -28,10 +28,15 @@ def maininit():
     global pressed_task
     global calcknop
     global pressed_calc
+    global glue_app
     global lastkey
     global opened_list
     global dev
     global sticky
+    global HOTELAD
+    global HOTELAD2
+    global menu
+    menu = 0
     sticky = False
     dev = False
     os.chdir("Images")
@@ -54,53 +59,84 @@ def maininit():
     pressed_task = ImageTk.PhotoImage(ImageTk.Image.open("Taakbeheer pictogram geopend.jpg").resize((40,40)))
     gameknop = ImageTk.PhotoImage(ImageTk.Image.open("Game pictogram .png").resize((99, 100)))
     pressed_game = ImageTk.PhotoImage(ImageTk.Image.open("Game pictogram geopend.png").resize((40, 40)))
+    glue_app = ImageTk.PhotoImage(ImageTk.Image.open("Lijm pictogram .png").resize((100, 100)))
+    HOTELAD = ImageTk.PhotoImage(ImageTk.Image.open("RojalParck.png").resize((300, 300)))
+    HOTELAD2 = ImageTk.PhotoImage(ImageTk.Image.open("Onbetrouwbare ad hotelkamer Project Informatica 2.png").resize((300, 300)))
+
+def checkinstalled(app):
+    os.chdir("..\MainGraphic")
+    try:
+        file = open("Installed.txt", "r")
+    except FileNotFoundError:
+        return False
+    check = file.read()
+    if check.find(app) != -1:
+        return True
+    else:
+        print("No")
+        return False
 
 def add_onderbalk(file):
     global opened_list
     tot_items = len(opened_list)
     match file:
         case "Calculator.py":
-            menu = ttk.Button(root, image=pressed_calc)
+            menu = ttk.Button(root, image=pressed_calc, command=lambda m=file: openapp(m, False))
         case "Taakbeheer.py":
-            menu = ttk.Button(root, image=pressed_task)
+            menu = ttk.Button(root, image=pressed_task, command=lambda m=file: openapp(m, False))
         case "unwingame.py":
-            menu = ttk.Button(root, image=pressed_game)
-    menu.place(x=48, y=(tot_items * 50))
-    root.mainloop(1)
+            menu = ttk.Button(root, image=pressed_game, command=lambda m=file: openapp(m, False))
+        case "Letter.py":
+            menu = ttk.Button(root, image=pressed_game, command=lambda m=file: openapp(m, False))
+    menu.place(x=(tot_items * 50), y=402)
+    root.update()
 
-def open(file):
+def openapp(file, bool=True):
     global opened_list
     opened_list.append(file)
-    print(opened_list)
-    add_onderbalk(file)
-    ay.delay(2, dev)
+    if bool: add_onderbalk(file)
+    ay.delay(1, dev)
     os.chdir("../MainGraphic")
-    subprocess.run([sys.executable, file], check=True)
-    print("Closed")
+    try:
+        subprocess.run([sys.executable, "Annoyance.py"], check=True)
+    finally:
+        subprocess.run([sys.executable, file], check=True)
 
 def Start():
     backgroundlabel = tk.Label(image=background)
     backgroundlabel.image = background
     backgroundlabel.place(x=0, y=0)
-    task = ttk.Button(root, image=taskknop, command=lambda m='Taakbeheer.py': open(m))
-    task.place(x=20, y=20)
-    calc = tk.Button(root, image=calcknop, command=lambda m='Calculator.py': open(m))
-    calc.place(x=22, y=150)
-    game = tk.Button(root, image=gameknop, command=lambda m='unwingame.py': open(m))
-    game.place(x=21, y=280)
-    glue = tk.Button(root, image=gameknop, command=stay_here)
-    glue.place(x=150, y=20)
+    if checkinstalled("Task"):
+        task = ttk.Button(root, image=taskknop, command=lambda m='Taakbeheer.py': openapp(m))
+        task.place(x=20, y=20)
+    if checkinstalled("Calc"):
+        calc = tk.Button(root, image=calcknop, command=lambda m='Calculator.py': openapp(m))
+        calc.place(x=22, y=150)
+    if checkinstalled('Game'):
+        game = tk.Button(root, image=gameknop, command=lambda m='unwingame.py': openapp(m))
+        game.place(x=21, y=280)
+    if checkinstalled("Glue"):
+        glue = tk.Button(root, image=glue_app, command=stay_here)
+        glue.place(x=150, y=20)
+    if checkinstalled("Word"):
+        word = tk.Button(root, image=gameknop, command=lambda m='Letter.py': openapp(m))
+        word.place(x=152, y=150)
     onderbalk = tk.Label(root, image=balk)
-    onderbalk.place(x=0, y=450)
+    onderbalk.place(x=0, y=400)
+    zoek = tk.Button(root, text="ZOEK", command=search)
+    zoek.place(x=800, y=440)
     today = dt.datetime.now()
     randomjaar = random.randint(0, today.year)
     date = today.year-randomjaar, 12- today.month, 30- today.day
     time = 24-today.hour, ":", 60-today.minute
     label = tk.Label(root, text=date, fg="black")
     label1 = tk.Label(root, text=time, fg="black")
-    label.place(relx=0.997, rely=0.969, anchor='se')
-    label1.place(relx=0.98, rely=0.93, anchor='se')
+    label.place(relx=0.997, rely=0.898, anchor='se')
+    label1.place(relx=0.989, rely=0.85, anchor='se')
 
+def search():
+    ay.delay(0.5)
+    ay.ping("Search result:", "Niks gevonden", 1)
 
 def keypress_handler(event):
     global dev
