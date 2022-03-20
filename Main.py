@@ -14,6 +14,7 @@ import MainGraphic.Annoyance as ay
 import MainGraphic.Calculator as calc
 import MainGraphic.unwingame as uwg
 import MainGraphic.Taakbeheer as task
+import MainGraphic.uselessbox as box
 
 def maininit():
     # Load assets
@@ -88,6 +89,8 @@ def add_onderbalk(file):
             menu = ttk.Button(root, image=pressed_game, command=lambda m=file: openapp(m, False))
         case "Letter.py":
             menu = ttk.Button(root, image=pressed_game, command=lambda m=file: openapp(m, False))
+        case "uselessbox.py":
+            menu = ttk.Button(root, image=pressed_game, command=lambda m=file: openapp(m, False))
     menu.place(x=(tot_items * 50), y=402)
     root.update()
 
@@ -118,6 +121,9 @@ def Start():
     if checkinstalled("Glue"):
         glue = tk.Button(root, image=glue_app, command=stay_here)
         glue.place(x=150, y=20)
+    if checkinstalled("box"):
+        box = tk.Button(root,image=gameknop, command=lambda m='uselessbox.py':openapp(m))
+        box.place(x=150,y=150)
     if checkinstalled("Word"):
         word = tk.Button(root, image=gameknop, command=lambda m='Letter.py': openapp(m))
         word.place(x=152, y=150)

@@ -1,6 +1,7 @@
 from tkinter import *
 import tkinter as tk
 import random
+import MainGraphic.Annoyance as ay
 
 movable1 = 0
 movable2 = 0
@@ -99,24 +100,24 @@ def randomizer():
     global movable2
     global movable3
     global movable4
-    raise1 = random.randint(1,1000)
-    raise2 = random.randint(1,1000)
-    raise3 = random.randint(1,1000)
-    raise4 = random.randint(1,1000)
+    raise1 = random.randint(1,100)
+    raise2 = random.randint(1,100)
+    raise3 = random.randint(1,100)
+    raise4 = random.randint(1,100)
     maybewin= random.randint(1,10)
-    if raise1 < 990 and (movable1%2)!=0:
+    if raise1 < 90 and (movable1%2)!=0:
         move1()
         old1=movable1
         movable1=old1+1
-    if raise2 < 990 and (movable2%2)!=0:
+    if raise2 < 90 and (movable2%2)!=0:
         old2=movable2
         movable2=old2+1
         move2()
-    if raise3 < 990 and (movable3%2)!=0:
+    if raise3 < 90 and (movable3%2)!=0:
         old3=movable3
         movable3=old3+1
         move3()
-    if raise4 < 990 and (movable4%2)!=0:
+    if raise4 < 90 and (movable4%2)!=0:
         old4 = movable4
         movable4 = old4 + 1
         move4()
