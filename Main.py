@@ -122,8 +122,8 @@ def Start():
         glue = tk.Button(root, image=glue_app, command=stay_here)
         glue.place(x=150, y=20)
     if checkinstalled("box"):
-        box = tk.Button(root,image=gameknop, command=lambda m='uselessbox.py':openapp(m))
-        box.place(x=150,y=150)
+        box = tk.Button(root, image=gameknop, command=lambda m='uselessbox.py':openapp(m))
+        box.place(x=150,y=280)
     if checkinstalled("Word"):
         word = tk.Button(root, image=gameknop, command=lambda m='Letter.py': openapp(m))
         word.place(x=152, y=150)
